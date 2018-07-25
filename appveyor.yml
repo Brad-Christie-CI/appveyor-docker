@@ -4,15 +4,16 @@ image: Visual Studio 2017
 environment:
   DOCKER_PASS:
     secure: rBZnM8JQZGVmMu5zdYP5Qw==
+  TAG_NAME: bchsitecore/example
 
 install:
   - ps: Write-Host Server version $(Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion').BuildLabEx
   - cmd: docker version
 build_script:
-  - ps: .\Build.ps1 -TagName bchsitecore/example
+  - ps: .\Build.ps1 -TagName $env:TAG_NAME
 after_build:
   - docker images
 test_script:
-  - ps: .\Test.ps1 -TagName bchsitecore/example
+  - ps: .\Test.ps1 -TagName $env:TAG_NAME
 deploy_script:
-  - ps: .\Deploy.ps1 -TagName bchsitecore/example
+  - ps: .\Deploy.ps1 -TagName $env:TAG_NAME
