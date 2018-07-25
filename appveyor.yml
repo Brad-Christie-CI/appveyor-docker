@@ -9,10 +9,10 @@ install:
   - ps: Write-Host Server version $(Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion').BuildLabEx
   - cmd: docker version
 build_script:
-  - ps: .\Build.ps1
+  - ps: .\Build.ps1 -TagName bchsitecore/example
 after_build:
   - docker images
 test_script:
-  - ps: .\Test.ps1
+  - ps: .\Test.ps1 -TagName bchsitecore/example
 deploy_script:
-  - ps: .\Deploy.ps1
+  - ps: .\Deploy.ps1 -TagName bchsitecore/example

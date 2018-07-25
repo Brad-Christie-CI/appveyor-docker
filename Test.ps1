@@ -1,8 +1,14 @@
+[CmdletBinding()]
+Param(
+  [Parameter(Position = 1, Mandatory = $false, HelpMessage = "Tag name")]
+  [ValidateNotNullOrEmpty()]
+  [string]$TagName = "bchsitecore/example"
+)
 $ErrorActionPreference = "Stop"
 
 Write-Host "Test started..."
 
-$ContainerId = $(docker run --rm --detach bchsitecore/example)
+$ContainerId = $(docker run --rm --detach $TagName)
 Write-Verbose "`$ContainerID: $ContainerID"
 
 $IPAddress = $(docker inspect --format '{{ .NetworkSettings.Networks.nat.IPAddress }}' $ContainerId)
