@@ -2,7 +2,7 @@
 Param(
   [Parameter(Position = 1, Mandatory = $false, HelpMessage = "Tag name")]
   [ValidateNotNullOrEmpty()]
-  [string]$TagName = "bchsitecore/example"
+  [string]$TagName = $env:TAG_NAME
 )
 $ErrorActionPreference = "Stop"
 

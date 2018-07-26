@@ -10,10 +10,10 @@ install:
   - ps: Write-Host Server version $(Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion').BuildLabEx
   - cmd: docker version
 build_script:
-  - ps: .\Build.ps1 -TagName $env:TAG_NAME
+  - ps: .\Build.ps1
 after_build:
   - docker images
 test_script:
-  - ps: .\Test.ps1 -TagName $env:TAG_NAME
+  - ps: .\Test.ps1
 deploy_script:
-  - ps: .\Deploy.ps1 -TagName $env:TAG_NAME
+  - ps: .\Deploy.ps1
